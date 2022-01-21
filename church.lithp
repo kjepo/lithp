@@ -1,0 +1,32 @@
+(DEFINE ADDONE (LAMBDA (N) (ADD 1 N)))
+(DEFINE PRINT (LAMBDA (C) ((C ADDONE) 0)))
+(DEFINE ZERO (LAMBDA (F) (LAMBDA (N) N)))
+(DEFINE SUCC (LAMBDA (N) (LAMBDA (F) (LAMBDA (X) (F ((N F) X))))))
+(DEFINE ONE (SUCC ZERO))
+(DEFINE PLUS (LAMBDA (M) (LAMBDA (N) (LAMBDA (F) (LAMBDA (X)
+        ((M F) ((N F) X)))))))
+(DEFINE TIMES (LAMBDA (M) (LAMBDA (N) (LAMBDA (F) (LAMBDA (X)
+        ((M (N F)) X))))))
+(DEFINE TRUE (LAMBDA (X) (LAMBDA (Y) X)))
+(DEFINE FALSE (LAMBDA (X) (LAMBDA (Y) Y)))
+(DEFINE PRED (LAMBDA (K) (((K (LAMBDA (P) (LAMBDA (U)
+        ((U (SUCC (P TRUE))) (P TRUE)))))
+        (LAMBDA (U) ((U ZERO) ZERO))) FALSE)))
+(DEFINE ISZERO (LAMBDA (N) ((N (TRUE FALSE)) TRUE)))
+(DEFINE Z (LAMBDA (F)
+        ((LAMBDA (X) (F (LAMBDA (Z) ((X X) Z))))
+         (LAMBDA (X) (F (LAMBDA (Z) ((X X) Z)))))))
+(DEFINE H
+        (LAMBDA (F) (LAMBDA (N) (((N ISZERO) ONE) ((TIMES N) (F (PRED N)))))))
+(DEFINE FAC (LAMBDA (N) ((Z H) N)))
+
+(DEFINE FOUR (SUCC (SUCC (SUCC ONE))))
+
+(PRINT (PRED (PRED (PRED (PRED (PRED ((TIMES FOUR) FOUR)))))))
+
+
+Need to make iszero lazy.  Let x and y be lambda expressions and then
+evaluate them in true and false.
+
+
+

@@ -1,0 +1,5 @@
+(LETREC (FIB (LAMBDA (N)
+	(IF (EQ N 0) 1
+	    (IF (EQ N 1) 1
+		(ADD (FIB (SUB N 1)) (FIB (SUB N 2)))))))
+	(FIB 5))

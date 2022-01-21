@@ -1,0 +1,48 @@
+(MUL (ADD 3 4) (ADD 5 6))
+(DIV (SUB 10 2) (SUB 4 2))
+(CAR (CONS 1 (CONS 2 (CONS 3 4))))
+(CAR (CDR (CONS 1 (CONS 2 (CONS 3 4)))))
+(CAR (QUOTE (A (B C) D)))
+(CDR (QUOTE (A (B C) D)))
+(CAR (CDR (QUOTE (A (B C) D))))
+(CAR (CAR (QUOTE ((B C) A D))))
+(EQ (QUOTE A) (QUOTE A))
+(EQ (QUOTE A) (QUOTE B))
+(EQ (QUOTE A) (QUOTE (A)))
+(EQ (QUOTE (A)) (QUOTE (A)))
+(ATOM (QUOTE A))
+(ATOM 42)
+(ATOM (CONS 27 19))
+((LAMBDA (X) ((LAMBDA (Y) (ADD (MUL X X) (MUL Y Y))) 3)) 4)
+(IF (EQ 1 1) (QUOTE EQUAL) (QUOTE NOTEQUAL))
+(IF (EQ 1 2) (QUOTE EQUAL) (QUOTE NOTEQUAL))
+(LET (X 3) X)
+(DEFINE HYP 
+	(LAMBDA (X) 
+		(LAMBDA (Y)
+			(LET (SQR (LAMBDA (X) (MUL X X)))
+				(ADD (SQR X) (SQR Y))))))
+
+((HYP 3) 4)
+(LETREC (FAC (LAMBDA (N) (IF (EQ N 0) 1 (MUL N (FAC (SUB N 1))))))
+	(FAC 3))
+(LETREC (REV (LAMBDA (L)
+	(IF (EQ L NIL)
+	    NIL
+	    (IF (EQ (CDR L) NIL)
+		L
+		(CONS (CAR (REV (CDR L)))
+		      (REV (CONS (CAR L)
+				 (REV (CDR (REV (CDR L)))))))))))
+	(REV (QUOTE (A B C D))))
+(DEFINE Z 
+	(LAMBDA (F)
+		((LAMBDA (X) (F (LAMBDA (Z) ((X X) Z))))
+		 (LAMBDA (X) (F (LAMBDA (Z) ((X X) Z)))))))
+(DEFINE H 
+	(LAMBDA (F) (LAMBDA (N)
+		(IF (EQ N 0)
+	    	    	1
+	    		(MUL N (F (SUB N 1)))))))
+((Z H) 3)
+
