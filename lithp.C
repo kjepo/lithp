@@ -4,16 +4,16 @@
 using namespace std;
  
 // class hierarchy
-class Env;	       // Environment : Id -> Sexp
+class Env;	                // Environment : Id -> Sexp
 class Sexp;
 class   Atom;
 class     Id;
 class     Num;
 class   Pair;
-class   Procedure;     // Procedure objects (a.k.a. closures)
+class   Procedure;              // Procedure objects (a.k.a. closures)
 
 // these symbols are predefined and have special meaning
-class Id *NIL;         // NIL plays the role of false
+class Id *NIL;                  // NIL plays the role of false
 class Id *TRUE;        class Id *IF_SYM;     class Id *EQ_SYM;
 class Id *LET_SYM;     class Id *ADD_SYM;    class Id *SUB_SYM;
 class Id *MUL_SYM;     class Id *DIV_SYM;    class Id *DEF_SYM; 
@@ -21,9 +21,9 @@ class Id *CAR_SYM;     class Id *CDR_SYM;    class Id *CONS_SYM;
 class Id *ATOM_SYM;    class Id *QUOTE_SYM;  class Id *LETREC_SYM;
 class Id *LAMBDA_SYM;
 
-inline void error(string s) { std::cout << s << "\n"; exit(1); }
+inline void error(string s) { cout << s << "\n"; exit(1); }
 
-struct env_pair {			// represents an environment binding
+struct env_pair {               // represents an environment binding
   Atom *id;
   Sexp *val;
 };
