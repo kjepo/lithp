@@ -1,4 +1,4 @@
-// lithp.C, kjepo 4/25/89.
+// lithp.C, kjepo 4/25/89, revised 2022
 
 #include <iostream>
 using namespace std;
